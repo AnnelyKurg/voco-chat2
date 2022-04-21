@@ -1,16 +1,22 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Chatcard from "../chatcard/Chatcard";
 import data from '../../data.json';
 
 function Chat() {
+    const [messages, setMessages] = useState([]);
+
+    useEffect(() => {
+        setMessages(data);
+    }, []);
+
     return (
         <div className="chat-box">
-            {data.map((item) => {
+            {messages.map((item) => {
                 return (<Chatcard
                         message={item.message}
                         author={item.username}
                         date={item.date}/>)
-            } )}
+            } )};
         </div>
     );
 }
